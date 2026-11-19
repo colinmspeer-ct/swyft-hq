@@ -1,0 +1,56 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Preview on github.io by default. Once swyft-hq.com DNS points at GitHub Pages,
+      # set the repository variable CUSTOM_DOMAIN=true (Settings > Secrets and variables > Actions > Variables).
+      SITE_URL: ${{ vars.CUSTOM_DOMAIN == 'true' && 'https://swyft-hq.com' || 'https://colinmspeer-ct.github.io/swyft-hq' }}
+      BASE_PATH: ${{ vars.CUSTOM_DOMAIN != 'true' && '/swyft-hq' || '' }}
+      # Optional form backend URL (e.g. a Formspree endpoint Colin creates). Empty = mailto fallback.
+      FORM_ENDPOINT: ${{ vars.FORM_ENDPOINT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build
+        run: npm run build
+      - name: Check (links, titles, schema, click depth)
+        run: npm run check
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload dist
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
