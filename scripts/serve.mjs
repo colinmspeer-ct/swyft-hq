@@ -1,10 +1,10 @@
-// Zero-dependency static server for dist/. Honors BASE_PATH (default /swyft-hq) like GitHub Pages.
+// Zero-dependency static server for dist/. Honors BASE_PATH (default: none, site at the root).
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { join, extname, normalize } from 'node:path';
 
 const ROOT = join(import.meta.dirname, '..', 'dist');
-const BASE = (process.env.BASE_PATH ?? '/swyft-hq').replace(/\/+$/, '');
+const BASE = (process.env.BASE_PATH ?? '').replace(/\/+$/, '');
 const PORT = Number(process.env.PORT ?? 8080);
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8' };
 

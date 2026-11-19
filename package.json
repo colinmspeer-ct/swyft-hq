@@ -10,6 +10,7 @@
     "build:domain": "SITE_URL=https://swyft-hq.com BASE_PATH= node src/build.mjs",
     "check": "node scripts/check.mjs",
     "dev": "BASE_PATH= SITE_URL=http://localhost:8080 node src/build.mjs && node scripts/serve.mjs",
-    "preview": "node src/build.mjs && node scripts/serve.mjs"
+    "preview": "node src/build.mjs && node scripts/serve.mjs",
+    "build:github-io": "SITE_URL=https://colinmspeer-ct.github.io/swyft-hq BASE_PATH=/swyft-hq node src/build.mjs"
   }
 }

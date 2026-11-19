@@ -4,7 +4,8 @@ import { readdir, readFile, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 const DIST = join(import.meta.dirname, '..', 'dist');
-const BASE = (process.env.BASE_PATH ?? '/swyft-hq').replace(/\/+$/, '');
+const BASE = (process.env.BASE_PATH ?? '').replace(/\/+$/, '');
+const SITE = (process.env.SITE_URL ?? 'https://swyft-hq.com').replace(/\/+$/, '');
 
 async function walk(d) {
   const out = [];
@@ -37,6 +38,8 @@ for (const f of files) {
   if (!desc) errors.push(`${path}: missing description`);
   if (h1s.length !== 1) errors.push(`${path}: ${h1s.length} H1s`);
   if (!/<link rel="canonical" href="https?:\/\/[^"]+"/.test(html)) errors.push(`${path}: missing canonical`);
+  else if (!html.includes(`<link rel="canonical" href="${SITE}/`)) errors.push(`${path}: canonical not on ${SITE}`);
+  if (!BASE && /(?:href|src|action|content)="[^"]*\/swyft-hq\//.test(html)) errors.push(`${path}: leftover /swyft-hq base path`);
   if (!html.includes('id="lead-form"') || !html.includes('name="business"')) errors.push(`${path}: missing lead form`);
   if (!html.includes('class="answer"')) errors.push(`${path}: missing answer block`);
   for (const [k, v] of [['title', title], ['desc', desc], ['h1', h1]]) {
@@ -65,6 +68,20 @@ for (const f of files) {
   }
   const main = get(/<main id="main">([\s\S]*?)<section class="section wrap" id="lead-form"/) ?? '';
   words.push([path, main.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length]);
+}
+
+// Root-level files: sitemap.xml, robots.txt, CNAME (custom domain builds)
+const sitemapXml = await readFile(join(DIST, 'sitemap.xml'), 'utf8');
+for (const m of sitemapXml.matchAll(/<loc>([^<]*)<\/loc>/g)) if (!m[1].startsWith(SITE + '/')) errors.push(`sitemap.xml: loc not on ${SITE}: ${m[1]}`);
+const robotsTxt = await readFile(join(DIST, 'robots.txt'), 'utf8');
+if (!robotsTxt.includes(`Sitemap: ${SITE}/sitemap.xml`)) errors.push(`robots.txt: Sitemap line not on ${SITE}`);
+if (!BASE) {
+  const host = new URL(SITE).host;
+  if (!/localhost|127\.0\.0\.1/.test(host)) {
+    const cname = (await exists(join(DIST, 'CNAME'))) ? (await readFile(join(DIST, 'CNAME'), 'utf8')).trim() : null;
+    if (cname !== host) errors.push(`CNAME: expected "${host}", got ${cname === null ? 'no file' : `"${cname}"`}`);
+  }
+  if (/\/swyft-hq\//.test(sitemapXml + robotsTxt)) errors.push('sitemap.xml/robots.txt: leftover /swyft-hq base path');
 }
 
 // Click depth (BFS from home)

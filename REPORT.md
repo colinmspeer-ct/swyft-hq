@@ -10,8 +10,8 @@
 ## 2. Repo
 https://github.com/colinmspeer-ct/swyft-hq (public, branch `main`)
 
-## 3. Preview URL (verified)
-https://colinmspeer-ct.github.io/swyft-hq/. The Pages workflow ran successfully. The home page, a sample of service, industry, and blog pages, CSS, sitemap.xml, robots.txt, and llms.txt all returned HTTP 200, and an unknown URL returned 404. A headless Chrome render of the live site was also checked.
+## 3. URLs
+Production target: https://swyft-hq.com (root, no base path; serving depends on DNS and the Pages custom-domain setting). Initial preview, verified at launch: https://colinmspeer-ct.github.io/swyft-hq/. The Pages workflow ran successfully. The home page, a sample of service, industry, and blog pages, CSS, sitemap.xml, robots.txt, and llms.txt all returned HTTP 200, and an unknown URL returned 404. A headless Chrome render of the live site was also checked.
 
 ## 4. Pages (48 indexable + 404)
 **Service money pages (5):** `/services/door-to-door-sales-teams/`, `/services/cold-calling-appointment-setting/`, `/services/pest-control-seo/`, `/services/local-seo-google-business-profile/`, `/services/digital-marketing/`
@@ -57,7 +57,8 @@ DNS for swyft-hq.com is at **GoDaddy**, not Cloudflare.
   - Replace the two apex A records with 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153.
   - Optionally add AAAA records: 2606:50c0:8000::153, 2606:50c0:8001::153, 2606:50c0:8002::153, 2606:50c0:8003::153.
   - Change the www CNAME → colinmspeer-ct.github.io.
-- After DNS: set the custom domain `swyft-hq.com` in repo Settings → Pages and enforce HTTPS. Then add the Actions variable `CUSTOM_DOMAIN=true` and re-run the workflow. This switches canonicals and the sitemap to https://swyft-hq.com and drops the `/swyft-hq` base path. The custom domain was **not** attached.
+- Site build (done): production now targets https://swyft-hq.com with no base path. Canonicals, Open Graph URLs, sitemap.xml and robots.txt use https://swyft-hq.com, `public/CNAME` (`swyft-hq.com`) is published in the Pages artifact, and the Actions variable `CUSTOM_DOMAIN=true` is set.
+- Still to do separately: DNS changes above, then set the custom domain `swyft-hq.com` in repo Settings → Pages and enforce HTTPS. The custom domain was **not** attached from this repo, and DNS was not changed.
 
 ## 7. CLI used
 Claude Code (model: Claude Opus 5.5), with `gh` authenticated as colinmspeer-ct.
@@ -83,9 +84,10 @@ Claude Code (model: Claude Opus 5.5), with `gh` authenticated as colinmspeer-ct.
 - Content lives in `content/{services,industries,blog}/*.mjs`. Facts are in `src/data.mjs`.
 - Commands (Node 20+, no install needed):
   - `npm run dev`: serves at http://localhost:8080/
-  - `npm run preview`: GitHub Pages-style build at /swyft-hq/
-  - `npm run build`
+  - `npm run preview`: production build (https://swyft-hq.com, no base path) served at http://localhost:8080/
+  - `npm run build`: production build (defaults: SITE_URL=https://swyft-hq.com, BASE_PATH empty)
   - `npm run check`
-  - `npm run build:domain`: custom-domain build
+  - `npm run build:domain`: production build with SITE_URL/BASE_PATH set explicitly
+  - `npm run build:github-io`: fallback build for the github.io project URL (/swyft-hq base)
 - Deploys run from `.github/workflows/pages.yml` on every push to `main` (build → check → deploy).
 - `SITE_URL` and `BASE_PATH` are configurable. Details in README.md.
