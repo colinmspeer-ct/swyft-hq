@@ -41,7 +41,7 @@ Shown on the pages as dashed `[PLACEHOLDER: …]` boxes. To list them all: `node
     - "Reply within one business day" and the "20-minute strategy call". Both are from the draft.
 - **Legal:** counsel review of Privacy and Terms; governing law state; optional mailing address.
 - **Form backend:** forms currently open the visitor's email app addressed to colin@swyft-hq.com. To receive submissions directly, create a form endpoint (e.g. Formspree) and set the repo variable `FORM_ENDPOINT`. No form or CRM IDs were invented.
-- **Photos:** there are no real photos on the site yet (the rulebook asks for real job photos, not stock). Only a generated logo and OG image are used.
+- **Photos:** there are no real photos on the site yet (the rulebook asks for real job photos, not stock). The only images are Colin's real SWYFT wordmark (and icons/OG image derived from it); see LOGO-UPDATE.md.
 
 ## 6. DNS findings and proposed changes (nothing was changed)
 DNS for swyft-hq.com is at **GoDaddy**, not Cloudflare.

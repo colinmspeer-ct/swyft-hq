@@ -18,7 +18,8 @@ export const cta = (href, text, { ghost = false, small = false } = {}) =>
 
 export const eyebrow = (text) => `<span class="eyebrow"><span class="dot" aria-hidden="true"></span>${text}</span>`;
 
-const logo = `<a class="logo" href="/" aria-label="Swyft home"><span class="logo-mark" aria-hidden="true">S</span>Swyft</a>`;
+// Real Swyft wordmark (light version for the dark header/footer). Source + regeneration: scripts/brand/make_logo_assets.py
+const logo = `<a class="logo" href="/" aria-label="Swyft home"><img src="/assets/logo-white.svg" alt="Swyft logo" width="139" height="22"></a>`;
 
 function header() {
   const links = [
@@ -142,7 +143,7 @@ export const orgSchema = () => ({
   name: business.name,
   alternateName: business.alternateName,
   url: abs('/'),
-  logo: abs('/assets/logo.png'),
+  logo: { '@type': 'ImageObject', url: abs('/assets/logo.png'), contentUrl: abs('/assets/logo.png'), width: 1485, height: 235, caption: 'Swyft logo' },
   image: abs('/assets/og-default.png'),
   email: business.email,
   telephone: business.phoneE164,
@@ -203,8 +204,10 @@ ${noindex ? '<meta name="robots" content="noindex">' : '<meta name="robots" cont
 <meta property="og:image:alt" content="Swyft: marketing for pest control and route-based home service businesses">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0d0b">
+<link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/logo.png">
+<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 ${extraHead}
