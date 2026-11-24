@@ -13,8 +13,8 @@ const PERSON_ID = () => abs('/about/#colin-speer');
 
 const arrow = '<svg class="ico" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-export const cta = (href, text, { ghost = false, small = false } = {}) =>
-  `<a class="btn${ghost ? ' btn-ghost' : ''}${small ? ' btn-sm' : ''}" href="${href}">${text}${arrow}</a>`;
+export const cta = (href, text, { ghost = false, small = false, external = false } = {}) =>
+  `<a class="btn${ghost ? ' btn-ghost' : ''}${small ? ' btn-sm' : ''}" href="${href}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${text}${arrow}</a>`;
 
 export const eyebrow = (text) => `<span class="eyebrow"><span class="dot" aria-hidden="true"></span>${text}</span>`;
 
@@ -25,6 +25,7 @@ function header() {
   const links = [
     ['/services/', 'Services'],
     ['/industries/', 'Industries'],
+    ['/international/', 'Swyft International'],
     ['/blog/', 'Blog'],
     ['/about/', 'About'],
   ];
@@ -57,7 +58,7 @@ function footer() {
     </div>
     ${col('Services', services.map((s) => [s.url, s.short]))}
     ${col('Industries', industries.map((i) => [i.url, i.label]))}
-    ${col('Company', [['/about/', 'About Colin Speer'], ['/contact/', 'Contact'], ['/blog/', 'Blog'], ['/services/', 'All services'], ['/industries/', 'All industries'], ['/sitemap/', 'HTML sitemap'], ['/sitemap.xml', 'XML sitemap'], ['/privacy/', 'Privacy policy'], ['/terms/', 'Terms of service']])}
+    ${col('Company', [['/about/', 'About Colin Speer'], ['/international/', 'Swyft International'], ['/contact/', 'Contact'], ['/blog/', 'Blog'], ['/services/', 'All services'], ['/industries/', 'All industries'], ['/sitemap/', 'HTML sitemap'], ['/sitemap.xml', 'XML sitemap'], ['/privacy/', 'Privacy policy'], ['/terms/', 'Terms of service']])}
   </div>
   <div class="wrap foot-legal">
     <p>© ${new Date().getFullYear()} Swyft. All rights reserved. Divisions: ${divisions.map((d) => d.name).join(' · ')}.</p>
@@ -100,8 +101,8 @@ export function faqSection(faqs, heading = 'Frequently asked questions') {
   return { html, schema };
 }
 
-export function leadForm({ heading = 'Book a strategy call', sub = 'Tell us about your business. Colin and the team will reach out within one business day.', interest = '' } = {}) {
-  const opts = serviceInterestOptions
+export function leadForm({ heading = 'Book a strategy call', sub = 'Tell us about your business. Colin and the team will reach out within one business day.', interest = '', extraOptions = [], note = 'A 20-minute strategy call. We\'ll show you where your next 100 jobs come from.', messagePlaceholder = 'Your trade, service area, and goals' } = {}) {
+  const opts = [...serviceInterestOptions, ...extraOptions]
     .map((o) => `<option${o === interest ? ' selected' : ''}>${esc(o)}</option>`)
     .join('');
   return `<section class="section wrap" id="lead-form" aria-labelledby="lead-h">
@@ -113,7 +114,7 @@ export function leadForm({ heading = 'Book a strategy call', sub = 'Tell us abou
       <ul class="lead-facts">
         <li>Email: <a href="mailto:${business.email}">${business.email}</a></li>
         <li>Phone: <a href="tel:${business.phoneE164}">${business.phone}</a></li>
-        <li>A 20-minute strategy call. We'll show you where your next 100 jobs come from.</li>
+        <li>${note}</li>
       </ul>
     </div>
     <form class="lead-form" action="mailto:${business.email}?subject=Swyft%20strategy%20call%20request" method="post" enctype="text/plain" data-endpoint="${esc(FORM_ENDPOINT)}" data-email="${business.email}">
@@ -126,7 +127,7 @@ export function leadForm({ heading = 'Book a strategy call', sub = 'Tell us abou
         <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
       </div>
       <label>Service interest<select name="service">${interest ? '' : '<option value="" selected disabled>Choose one…</option>'}${opts}</select></label>
-      <label>Message<textarea name="message" rows="4" placeholder="Your trade, service area, and goals"></textarea></label>
+      <label>Message<textarea name="message" rows="4" placeholder="${esc(messagePlaceholder)}"></textarea></label>
       <input type="hidden" name="page" value="">
       <label class="hp" aria-hidden="true">Leave blank<input name="_gotcha" tabindex="-1" autocomplete="off"></label>
       <button class="btn btn-block" type="submit">Send message${arrow}</button>
@@ -181,7 +182,7 @@ function withBase(html) {
   return html.replace(/(href|src|action)="\/(?!\/)/g, `$1="${BASE_PATH}/`);
 }
 
-export function page({ path, title, description, body, schema = [], ogType = 'website', ogImage = '/assets/og-default.png', noindex = false, extraHead = '' }) {
+export function page({ path, title, description, body, schema = [], ogType = 'website', ogImage = '/assets/og-default.png', noindex = false, extraHead = '', ogImageAlt = 'Swyft: marketing for pest control and route-based home service businesses' }) {
   const canonical = abs(path);
   const graph = { '@context': 'https://schema.org', '@graph': [orgSchema(), websiteSchema(), ...schema.filter(Boolean)] };
   const html = `<!doctype html>
@@ -201,7 +202,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : '<meta name="robots" cont
 <meta property="og:image" content="${abs(ogImage)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Swyft: marketing for pest control and route-based home service businesses">
+<meta property="og:image:alt" content="${esc(ogImageAlt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0d0b">
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">

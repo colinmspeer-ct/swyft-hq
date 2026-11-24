@@ -5,6 +5,7 @@ import { SITE_URL, BASE_PATH, BUILD_DATE } from './config.mjs';
 import { business, services, industries, divisions, trades } from './data.mjs';
 import { page, breadcrumbs, answerBlock, faqSection, leadForm, cta, eyebrow, card, esc, abs, orgRef, personRef } from './lib.mjs';
 import { homeFaqs, about, privacyBody, termsBody } from './pages.mjs';
+import { internationalParts, internationalLlms } from './international.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'dist');
@@ -317,6 +318,35 @@ ${leadForm()}`;
   emit(url, page({ path: url, title: p.title, description: p.description, body, ogType: 'article', schema: [bc.schema, article, faq.schema] }), { priority: '0.6', group: 'Blog', title: p.h1, lastmod: p.updated ?? p.date });
 }
 
+// ---------- Swyft International ----------
+{
+  const { bc, faq, body, title, description } = internationalParts();
+  const service = {
+    '@type': 'Service',
+    '@id': abs('/international/') + '#service',
+    name: 'Swyft International',
+    serviceType: 'Offshore talent placement',
+    description,
+    url: abs('/international/'),
+    provider: orgRef(),
+    brand: { '@type': 'Brand', name: 'Swyft International' },
+    areaServed: { '@type': 'Country', name: 'United States' },
+    audience: { '@type': 'BusinessAudience', name: 'Employers hiring remote offshore talent' },
+  };
+  emit(
+    '/international/',
+    page({
+      path: '/international/',
+      title,
+      description,
+      body,
+      ogImageAlt: 'Swyft International: offshore talent placement on a 33% success fee',
+      schema: [bc.schema, service, faq.schema],
+    }),
+    { priority: '0.8', group: 'Main', title: 'Swyft International' }
+  );
+}
+
 // ---------- About ----------
 {
   const bc = breadcrumbs([['About', '/about/']]);
@@ -423,6 +453,9 @@ ${industries.map((i) => `- [${i.label}](${abs(i.url)})`).join('\n')}
 
 ## Guides
 ${posts.map((p) => `- [${p.h1}](${abs(postUrl(p))}): ${p.excerpt}`).join('\n')}
+
+## Swyft International
+${internationalLlms}
 
 ## Company
 - [About Colin Speer](${abs('/about/')})
