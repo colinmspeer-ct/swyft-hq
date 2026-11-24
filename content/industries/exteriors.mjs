@@ -3,7 +3,7 @@ export default {
   title: 'Door-to-Door Roofing & Exterior Sales Teams | Swyft',
   description: 'Swyft fields housed door-to-door teams that sell roofing, roof repair, siding, windows, gutters, and gutter guards for exterior companies.',
   h1: 'Door-to-door sales for roofing and exterior companies.',
-  answer: 'Swyft recruits, trains, houses, and manages a door-to-door team that sells roofing, roof repair, siding, windows, gutters, and gutter guards for exterior companies. You install the work and own the customer. You pay a revenue share per account under a marketing agreement. No percentage is published here. Window washing is a different business and a <a href="/industries/window-cleaning/">different page</a>.',
+  answer: 'Swyft recruits, trains, houses, and manages a door-to-door team that sells roofing, roof repair, siding, windows, gutters, and gutter guards for exterior companies. You install the work and own the customer. You pay a revenue share per account under a marketing agreement. No percentage is published here. Window washing is a different business. That offer is on the <a href="/industries/window-cleaning/">window cleaning page</a>.',
   intro: 'The lead industry at Swyft is exteriors, and roofing is the center of it. The house is the demo. The owner of the company should be thinking about crews and materials, not about who is sleeping where and who said the wrong thing about a deductible.',
   homeKicker: 'Lead industry',
   homeHeading: 'Exteriors, with roofing at the center',

@@ -22,17 +22,18 @@ export const cta = (href, text, { ghost = false, small = false, external = false
 
 export const eyebrow = (text) => `<span class="eyebrow"><span class="dot" aria-hidden="true"></span>${text}</span>`;
 
-const logo = `<a class="logo" href="/" aria-label="Swyft home"><img src="/assets/logo-white.svg" alt="Swyft logo" width="139" height="22"></a>`;
+const logo = (eager = false) =>
+  `<a class="logo" href="/" aria-label="Swyft home"><img src="/assets/logo-white.svg" alt="Swyft" width="139" height="22"${eager ? ' fetchpriority="high"' : ' decoding="async"'}></a>`;
 
 function header() {
   const items = nav.map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join('');
   return `<header class="site-header">
   <div class="wrap header-inner">
-    ${logo}
+    ${logo(true)}
     <nav class="nav-desktop" aria-label="Main"><ul>${items}</ul></nav>
     <div class="header-actions">
       <a class="header-phone" href="tel:${business.phoneE164}">${business.phone}</a>
-      ${cta('/partner/', 'Partner with us', { small: true })}
+      ${cta('/contact/#lead-form', 'Book a call', { small: true })}
       <details class="nav-mobile">
         <summary aria-label="Open menu"><span></span><span></span><span></span></summary>
         <nav aria-label="Mobile"><ul>${items}<li><a href="/contact/">Contact</a></li><li><a href="/international/">Swyft International</a></li><li><a href="tel:${business.phoneE164}">Call ${business.phone}</a></li></ul></nav>
@@ -48,7 +49,7 @@ function footer() {
   return `<footer class="site-footer">
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      ${logo}
+      ${logo()}
       <p>${esc(business.oneLiner)}</p>
       <p class="foot-contact"><a href="mailto:${business.email}">${business.email}</a><br><a href="tel:${business.phoneE164}">${business.phone}</a></p>
     </div>
@@ -92,7 +93,7 @@ export function faqSection(faqs, heading = 'Frequently asked questions') {
   const html = `<section class="section wrap faq" aria-labelledby="faq-h">
   <h2 id="faq-h">${heading}</h2>
   <div class="faq-list">${faqs
-    .map((f) => `<details><summary><h3>${esc(f.q)}</h3></summary><div class="faq-a"><p>${f.a}</p></div></details>`)
+    .map((f, i) => `<details${i === 0 ? ' open' : ''}><summary><h3>${esc(f.q)}</h3></summary><div class="faq-a"><p>${f.a}</p></div></details>`)
     .join('')}</div>
 </section>`;
   const schema = {
@@ -107,13 +108,12 @@ export function faqSection(faqs, heading = 'Frequently asked questions') {
 }
 
 export function leadForm({
-  heading = 'Tell us what you sell at the door',
-  sub = `Owners: tell us the product, the market, and how many accounts your crews can fulfill. Email <a href="mailto:${business.email}">${business.email}</a> any time.`,
+  heading = 'Book a call',
+  sub = `Name, company, email, and the industry. We reply by email or phone. Or write <a href="mailto:${business.email}">${business.email}</a>.`,
   interest = '',
   extraOptions = [],
-  note = 'A conversation about the offer, the market, and whether a housed team fits. No rate is quoted on this form.',
-  messagePlaceholder = 'What you sell, where, and the capacity you can fulfill',
-  submitLabel = 'Send message',
+  note = 'No rate is quoted from this form. Tell us the offer on the call.',
+  submitLabel = 'Book a call',
 } = {}) {
   const opts = [...serviceInterestOptions, ...extraOptions]
     .map((o) => `<option${o === interest ? ' selected' : ''}>${esc(o)}</option>`)
@@ -140,7 +140,6 @@ export function leadForm({
         <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
       </div>
       <label>Industry<select name="service">${interest ? '' : '<option value="" selected disabled>Choose one…</option>'}${opts}</select></label>
-      <label>Message<textarea name="message" rows="4" placeholder="${esc(messagePlaceholder)}"></textarea></label>
       <input type="hidden" name="page" value="">
       <label class="hp" aria-hidden="true">Leave blank<input name="_gotcha" tabindex="-1" autocomplete="off"></label>
       <button class="btn btn-block" type="submit">${submitLabel}${arrow}</button>
@@ -245,6 +244,10 @@ ${header()}
 ${body}
 </main>
 ${footer()}
+<div class="sticky-cta">
+  <a class="btn" href="/contact/#lead-form">Book a call</a>
+  <a class="btn btn-ghost" href="tel:${business.phoneE164}">Call</a>
+</div>
 <script src="/assets/site.js" defer></script>
 </body>
 </html>`;

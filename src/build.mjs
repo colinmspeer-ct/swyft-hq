@@ -3,7 +3,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SITE_URL, BASE_PATH, BUILD_DATE } from './config.mjs';
 import { business, industries } from './data.mjs';
-import { page, breadcrumbs, answerBlock, faqSection, leadForm, highlevelSlot, cta, eyebrow, card, esc, abs, orgRef, token, ph } from './lib.mjs';
+import { page, breadcrumbs, answerBlock, faqSection, leadForm, highlevelSlot, cta, eyebrow, card, esc, abs, orgRef, ph } from './lib.mjs';
 import { homeFaqs, howItWorks, partner, careers, about, privacyBody, termsBody } from './pages.mjs';
 import { internationalParts, internationalLlms } from './international.mjs';
 
@@ -60,14 +60,6 @@ const serviceSchema = ({ url, name, serviceType, description, audience, offers =
 // ---------- Home ----------
 {
   const faq = faqSection(homeFaqs, 'Questions owners ask before they hand off the door');
-  const logos = Array.from({ length: 6 }, () => `<li>${token('CLIENT LOGO')}</li>`).join('');
-  const stats = [
-    ['Sold accounts', 'Approved count goes here'],
-    ['Markets run', 'Approved count goes here'],
-    ['Weekly report', 'Sample not published'],
-  ]
-    .map(([label, note]) => `<div><div class="stat-v">${token('STAT')}</div><p class="stat-l">${esc(label)}</p><p class="stat-note">${esc(note)}</p></div>`)
-    .join('');
   const panels = industries
     .map((i, n) => {
       const c = indContent[i.key];
@@ -90,17 +82,21 @@ const serviceSchema = ({ url, name, serviceType, description, audience, offers =
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap">
-    ${eyebrow(esc(business.legalName))}
-    <h1>The outsourced door-to-door sales company.</h1>
-    <p class="lede">For home-service and telecom companies that sell at the door. Swyft recruits, trains, houses, and manages the team. You keep the customer. You pay a revenue share per account. You do not hire the reps.</p>
-    <div class="cta-row">${cta('/partner/', 'Partner with us')}${cta('/how-it-works/', 'See how it works', { ghost: true })}</div>
-    ${answerBlock(`<strong>Swyft</strong> (${esc(business.legalName)}) is the outsourced door-to-door sales company for owners who want more accounts without building a sales force. We <a href="/how-it-works/">recruit, train, house, and manage</a> the reps. They sell your service on your paperwork. You pay a commission per account under a <a href="/partner/">marketing deal</a>. No percentage is published on this site. Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>.`)}
+    ${eyebrow('For home-service owners')}
+    <h1>More sold accounts. No team to hire.</h1>
+    <p class="lede">Swyft recruits, trains, houses, and manages the door-to-door reps who sell your service. Your crews keep installing. You pay a revenue share per account. You do not payroll anyone.</p>
+    <div class="cta-row">${cta('/contact/#lead-form', 'Book a call')}${cta('/partner/', 'Partner with us', { ghost: true })}</div>
+    ${answerBlock(`<strong>Swyft</strong> (${esc(business.legalName)}) runs the door-to-door sales team for home-service owners who want more accounts without building a sales force. We <a href="/how-it-works/">recruit, train, house, and manage</a> the reps. They sell your offer on your paperwork. You pay a commission per account under a <a href="/partner/">marketing deal</a>. No percentage is published. Book a call at <a href="/contact/#lead-form">the short form</a>, email <a href="mailto:${business.email}">${business.email}</a>, or call <a href="tel:${business.phoneE164}">${business.phone}</a>.`)}
   </div>
 </section>
-<section class="section wrap" aria-labelledby="proof-h">
-  <div class="section-head"><h2 id="proof-h">Proof slots, empty on purpose</h2><p>No client is named and no result is printed until Swyft has permission. The boxes are placeholders.</p></div>
-  <ul class="logo-slots" aria-label="Client logo placeholders">${logos}</ul>
-  <div class="stats stats-slots">${stats}</div>
+<section class="section wrap" aria-labelledby="trust-h">
+  <div class="section-head"><h2 id="trust-h">Handled before anyone knocks</h2><p>Housing, the permit check, the weekly report, and the words on the porch. No borrowed client names and no borrowed numbers.</p></div>
+  <ol class="trust">
+    <li><h3>Housing is handled</h3><p>Swyft puts the team up in the market for the run. You do not sign a lease or manage a house.</p></li>
+    <li><h3>Permits are checked first</h3><p>Solicitation rules change by city. Deploy includes that check. If a permit is required, it is sorted before the first door. Your counsel still owns the contract. This page is not legal advice.</p></li>
+    <li><h3>You get a weekly report</h3><p>Doors, conversations, and sold accounts, by rep. The columns are the ones in your agreement. We do not print a scoreboard of someone else’s results.</p></li>
+    <li><h3>The pitch is your paperwork</h3><p>Price, scope, and cancellation language come from you. A rep who cannot say them is not on the doors. <a href="/how-it-works/">The five steps</a>.</p></li>
+  </ol>
 </section>
 <section class="band" aria-labelledby="model-h"><div class="wrap">
   <div class="section-head"><h2 id="model-h">What you stop doing</h2><p>The marketing deal is the whole offer. The rate is written in the agreement, not here.</p></div>
@@ -124,18 +120,24 @@ const serviceSchema = ({ url, name, serviceType, description, audience, offers =
   <div class="section-head"><h2 id="ind-h">Nine industries. Nine different doors.</h2><p>Exteriors lead, roofing in particular. The rest are not the same page with the trade swapped. <a href="/industries/">All industries</a>.</p></div>
   <div class="ind-list">${panels}</div>
 </section>
-<section class="band" aria-labelledby="steps-h"><div class="wrap split">
-  <div><h2 id="steps-h">Five steps, then a weekly report</h2><p class="muted">Recruit, train, deploy, manage, report. Housing happens at deploy. You are not the landlord and you are not the sales manager.</p><p>${cta('/how-it-works/', 'How it works', { ghost: true })}</p></div>
-  <ol class="steps">${howItWorks.steps.map((s, i) => `<li><span class="step-n">0${i + 1}</span><div><h3>${esc(s.title)}</h3><p>${esc(s.body.split('. ')[0])}.</p></div></li>`).join('')}</ol>
+<section class="band" aria-labelledby="obj-h"><div class="wrap">
+  <div class="section-head"><h2 id="obj-h">Objections worth answering before the call</h2><p>If one of these is the reason you have not outsourced the door, it should be on the page, not saved for a pitch.</p></div>
+  <div class="objections">
+    <article><h3>We would rather hire our own.</h3><p>Then you also recruit, house, and manage them. That is a second company. Swyft is that company. You still set the price and the capacity.</p></article>
+    <article><h3>What percent do you take?</h3><p>It is not on this site. A roof and a pest route are not the same account. The share is written in the <a href="/partner/">marketing agreement</a> for that offer.</p></article>
+    <article><h3>Reps will oversell us.</h3><p>The team stops at the number of jobs you can fulfill. A sold account you cannot deliver is a review with your name on it. We size the week to your calendar.</p></article>
+    <article><h3>Permits and pushy pitches will burn the brand.</h3><p>Housing and the city permit check sit with Swyft. The words on the porch are your contract, practiced, not improvised. Read <a href="/how-it-works/">how a team is run</a>.</p></article>
+  </div>
+  <p class="deal-note">${cta('/contact/#lead-form', 'Book a call')}</p>
 </div></section>
 ${faq.html}
-${leadForm({ heading: 'Tell us the offer and the capacity', interest: '' })}`;
+${leadForm({ heading: 'Book a call', sub: 'Four fields. Tell us the industry. We will ask about capacity on the call.' })}`;
   emit(
     '/',
     page({
       path: '/',
-      title: 'Swyft | Outsourced Door-to-Door Sales for Home Services',
-      description: 'Swyft recruits, trains, houses, and manages door-to-door sales teams for home-service and telecom companies. You pay a revenue share per account.',
+      title: 'Swyft | Door-to-Door Sales Teams for Home-Service Owners',
+      description: 'Home-service owners: Swyft recruits, trains, houses, and manages the door-to-door team. You fulfill the work and pay a revenue share per account. Book a call.',
       body,
       schema: [
         faq.schema,
@@ -163,6 +165,8 @@ ${leadForm({ heading: 'Tell us the offer and the capacity', interest: '' })}`;
     eyebrowText: 'Industries',
     h1: 'Door-to-door teams, by the work you fulfill.',
     answer: 'Swyft runs outsourced door-to-door teams in nine industries: exteriors (roofing, roof repair, siding, windows, gutters, gutter guards), window cleaning, pest control, lawn care, fiber internet for companies that sell AT&T fiber and wireless, interior home improvement (bath remodels, kitchen remodels, doors), home security systems, water treatment and filtration, and HVAC. Each page is written for that trade. The commercial model on every one of them is a <a href="/partner/">marketing deal</a> with no published percentage.',
+    primary: cta('/contact/#lead-form', 'Book a call'),
+    secondary: cta('/partner/', 'Partner with us', { ghost: true }),
   })}
 <section class="section wrap"><div class="grid3">${cards}</div></section>
 ${prose(`<h2>Adding an industry later</h2><p>The site is built from a list in the codebase plus one content file per industry. Solar, energy, insurance, and anything else not in the nine are not offered on this site. If a new trade is approved, it gets its own page, its own homepage section, its own questions, and its own service schema. It does not get a find-and-replace of an existing page.</p>`)}
@@ -195,8 +199,8 @@ for (const i of industries) {
     h1: esc(c.h1),
     answer: c.answer,
     intro: c.intro,
-    primary: cta('/partner/', 'Partner with us'),
-    secondary: cta('/how-it-works/', 'How the team runs', { ghost: true }),
+    primary: cta('/contact/#lead-form', 'Book a call'),
+    secondary: cta('/partner/', 'Partner with us', { ghost: true }),
   })}
 ${offers}
 ${prose(c.sections)}
@@ -242,16 +246,18 @@ ${leadForm({ heading: c.formHeading, interest: c.interest })}`;
     eyebrowText: 'How it works',
     h1: howItWorks.h1,
     answer: howItWorks.answer,
-    primary: cta('/partner/', 'See the marketing deal'),
-    secondary: cta('/contact/', 'Talk about a market', { ghost: true }),
+    primary: cta('/contact/#lead-form', 'Book a call'),
+    secondary: cta('/partner/', 'See the marketing deal', { ghost: true }),
   })}
 <section class="section wrap" aria-labelledby="run-h"><h2 id="run-h" class="sr-only">The five steps</h2><ol class="steps steps-full">${howItWorks.steps
     .map((s, i) => `<li id="step-${i + 1}"><span class="step-n">0${i + 1}</span><div><h3>${esc(s.title)}</h3><p>${s.body}</p></div></li>`)
     .join('')}</ol></section>
 ${prose(`<h2>Housing is part of deploy, not an extra you arrange</h2>
 <p>Reps who drive in for a day and leave do not work a market the way a housed team does. Swyft puts the team up for the run. You do not sign the lease, you do not set house rules, and we do not publish addresses. If a market cannot be housed, it is not a market we pretend we can open.</p>
+<h2>Permits and compliance, before the first door</h2>
+<p>Door-to-door rules are local. One city wants a solicitor permit. The next bans the hours. Deploy includes that check for the cities on the route. If a permit is required, it is handled before a rep knocks, not discovered on a porch. Swyft does not give legal advice and does not replace your counsel. The agreement a homeowner signs is still yours. Have counsel read it before a team is trained on it.</p>
 <h2>Your paperwork is the training manual</h2>
-<p>The price, the scope, and the cancellation language come from you. A rep who cannot say them the way they are written is not finished with training. Local solicitation rules vary. This page is not legal advice, and Swyft does not claim to be your permit office. Have counsel review the agreement the rep is asking a homeowner to sign.</p>
+<p>The price, the scope, and the cancellation language come from you. A rep who cannot say them the way they are written is not finished with training.</p>
 <h2>The report</h2>
 <p>You should be able to see activity and sold accounts by rep, weekly, without calling the manager to ask who worked. The columns are set in the agreement. A sample is not on the site yet. ${ph('sample weekly scorecard, column names only')}</p>`)}
 ${faq.html}
@@ -284,7 +290,7 @@ ${leadForm({ heading: 'Ask how a team would run in your market' })}`;
     eyebrowText: 'For companies',
     h1: partner.h1,
     answer: partner.answer,
-    primary: cta('#lead-form', 'Start the conversation'),
+    primary: cta('#lead-form', 'Book a call'),
     secondary: cta('/how-it-works/', 'How the team runs', { ghost: true }),
   })}
 <section class="section wrap" aria-labelledby="split-h">
@@ -381,7 +387,7 @@ ${leadForm({
 // ---------- About ----------
 {
   const bc = breadcrumbs([['About', '/about/']]);
-  const body = `${hero({ crumbs: bc.html, eyebrowText: 'About', h1: about.h1, answer: about.answer })}
+  const body = `${hero({ crumbs: bc.html, eyebrowText: 'About', h1: about.h1, answer: about.answer, primary: cta('/contact/#lead-form', 'Book a call'), secondary: cta('/partner/', 'Partner with us', { ghost: true }) })}
 ${prose(about.body)}
 ${leadForm({ heading: 'Talk to Colin' })}`;
   const person = {
@@ -415,7 +421,9 @@ ${leadForm({ heading: 'Talk to Colin' })}`;
     crumbs: bc.html,
     eyebrowText: 'Contact',
     h1: 'Tell us what you sell at the door.',
-    answer: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The HighLevel form is not embedded yet. The block below is the slot for it. Until that embed is pasted in, use the email form under it.`,
+    answer: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The HighLevel form is not embedded yet. The block below is the slot for it. Until that embed is pasted in, use the short form under it.`,
+    primary: cta('#lead-form', 'Book a call'),
+    secondary: cta('/partner/', 'Read the marketing deal', { ghost: true }),
   })}
 ${highlevelSlot()}
 ${leadForm({ heading: 'Email form, until the embed is live' })}`;
@@ -467,7 +475,7 @@ for (const [path, name, h1, desc, html, ans] of [
   ['/terms/', 'Terms of service', 'Terms of service', `Terms for using the swyft-hq.com website, operated by ${business.legalName}.`, termsBody, 'The site describes Swyft’s door-to-door teams and a marketing deal in general. It is not a quote, not a commission rate, and not the agreement. Questions: colin@swyft-hq.com.'],
 ]) {
   const bc = breadcrumbs([[name, path]]);
-  const body = `${hero({ crumbs: bc.html, h1, answer: ans })}${prose(html)}${leadForm()}`;
+  const body = `${hero({ crumbs: bc.html, h1, answer: ans, primary: cta('/contact/#lead-form', 'Book a call'), secondary: cta('/partner/', 'Partner with us', { ghost: true }) })}${prose(html)}${leadForm()}`;
   emit(path, page({ path, title: `${name} | Swyft`, description: desc, body, schema: [bc.schema] }), { priority: '0.3', group: 'Company', title: name });
 }
 
@@ -476,7 +484,7 @@ for (const [path, name, h1, desc, html, ans] of [
   const bc = breadcrumbs([['Sitemap', '/sitemap/']]);
   const all = [...pages, { path: '/sitemap/', title: 'HTML sitemap', group: 'Company' }];
   const groups = ['Main', 'Industries', 'Company'];
-  const body = `${hero({ crumbs: bc.html, h1: 'Sitemap', answer: 'Every indexable page on swyft-hq.com. The same list is at <a href="/sitemap.xml">sitemap.xml</a>.' })}
+  const body = `${hero({ crumbs: bc.html, h1: 'Sitemap', answer: 'Every indexable page on swyft-hq.com. The same list is at <a href="/sitemap.xml">sitemap.xml</a>.', primary: cta('/contact/#lead-form', 'Book a call'), secondary: cta('/industries/', 'Browse industries', { ghost: true }) })}
 <section class="section wrap sitemap-cols">${groups
     .map((g) => `<div><h2>${g}</h2><ul>${all.filter((p) => p.group === g).map((p) => `<li><a href="${p.path}">${esc(p.title)}</a></li>`).join('')}</ul></div>`)
     .join('')}</section>${leadForm()}`;
@@ -488,7 +496,7 @@ const notFound = page({
   title: 'Page not found | Swyft',
   description: 'That page is not on swyft-hq.com.',
   noindex: true,
-  body: `${hero({ h1: 'Page not found', answer: 'That URL is not on this site. Try <a href="/industries/">industries</a>, <a href="/partner/">partner with us</a>, <a href="/how-it-works/">how it works</a>, or the <a href="/sitemap/">sitemap</a>.' })}${leadForm()}`,
+  body: `${hero({ h1: 'Page not found', answer: 'That URL is not on this site. Try <a href="/industries/">industries</a>, <a href="/partner/">partner with us</a>, <a href="/how-it-works/">how it works</a>, or the <a href="/sitemap/">sitemap</a>.', primary: cta('/contact/#lead-form', 'Book a call'), secondary: cta('/', 'Back to home', { ghost: true }) })}${leadForm()}`,
 });
 
 await rm(OUT, { recursive: true, force: true });
@@ -551,9 +559,10 @@ ${industries.map((i) => `- [${i.nav}](${abs(i.url)}): ${indContent[i.key].descri
 ${internationalLlms}
 
 ## Not on this site
-- No client names, logos, testimonials, or performance numbers. Slots are marked [CLIENT LOGO] and [STAT].
+- No client names, logos, testimonials, or performance numbers.
 - No published commission percentage for the door-to-door marketing deal.
 - Industries not listed above are not offered here.
+- Housing and a city solicitation-permit check are part of deploy. The site is not legal advice.
 `;
 await writeFile(join(OUT, 'llms.txt'), llms);
 

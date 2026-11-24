@@ -31,4 +31,4 @@ node scripts/check.mjs --placeholders
 
 ## Content rules
 
-No invented results, client names, testimonials, or commission rates. Empty slots are marked `[CLIENT LOGO]`, `[STAT]`, `[HIGHLEVEL FORM EMBED]`, or `[PLACEHOLDER: …]`. The word "investor" is not used.
+No invented results, client names, testimonials, or commission rates. Open inputs are marked `[HIGHLEVEL FORM EMBED]` or `[PLACEHOLDER: …]`. The word "investor" is not used.

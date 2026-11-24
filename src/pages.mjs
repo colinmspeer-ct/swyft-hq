@@ -1,5 +1,5 @@
 import { business } from './data.mjs';
-import { ph, token } from './lib.mjs';
+import { ph } from './lib.mjs';
 
 export const homeFaqs = [
   {
@@ -19,8 +19,12 @@ export const homeFaqs = [
     a: 'It is not on this website. The share is set in the marketing agreement for that offer and that market. Two products do not share a rate, and we will not print a number that pretends they do.',
   },
   {
+    q: 'Who handles housing and solicitation permits?',
+    a: 'Swyft houses the team in the market. Before the first door, deploy includes a check of that city’s solicitation rules. If a permit is required, it is handled before anyone knocks. This site is not legal advice. Your counsel still reviews the contract the homeowner signs.',
+  },
+  {
     q: 'Who do I contact?',
-    a: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The <a href="/contact/">contact page</a> has a form.`,
+    a: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The <a href="/contact/#lead-form">contact page</a> has a short form.`,
   },
 ];
 
@@ -156,7 +160,7 @@ export const about = {
 <p>${ph('Headshot of Colin, a real photo, not a stand-in')}</p>
 <p>${ph('LinkedIn or other profile URLs for Person schema sameAs')}</p>
 <h2>What we will not put on this site</h2>
-<p>No client names, no logos, and no result numbers until they are approved to publish. Empty slots are marked ${token('CLIENT LOGO')} and ${token('STAT')}. No rate card. The marketing agreement is where the share is written.</p>
+<p>No client names, no logos, and no result numbers. Trust on this site is the operating model: who recruits, who houses the team, how a city permit is handled, and what the weekly report contains. The marketing agreement is where the share is written. There is no rate card here.</p>
 <h2>A related offer</h2>
 <p><a href="/international/">Swyft International</a> is a separate page for offshore talent placement. It is not the door-to-door team. Door-to-door selling stays on <a href="/how-it-works/">how it works</a>.</p>
 `,
@@ -168,7 +172,7 @@ export const privacyBody = `
 <h2>Who we are</h2>
 <p>${business.legalName}, brand name Swyft. Email ${business.email}. Phone ${business.phone}. ${ph('business mailing address, if Colin chooses to publish one')}</p>
 <h2>Information you give us</h2>
-<p>If you use a contact form, we receive what you type: name, business name, email, phone, industry, message, and the page you sent it from. Today the form opens your email app with a message to ${business.email}, unless a form endpoint has been configured. The contact page also reserves a slot, marked [HIGHLEVEL FORM EMBED], for a HighLevel form. When that embed is installed, HighLevel will process the submission under its own terms and deliver it to us. You can also email or call us directly.</p>
+<p>If you use a contact form, we receive what you type: name, business name, email, phone, industry, and the page you sent it from. Today the form opens your email app with a message to ${business.email}, unless a form endpoint has been configured. The contact page also reserves a slot, marked [HIGHLEVEL FORM EMBED], for a HighLevel form. When that embed is installed, HighLevel will process the submission under its own terms and deliver it to us. You can also email or call us directly.</p>
 <h2>How we use it</h2>
 <p>We use the information to answer you and to talk about a door-to-door team or a role. We do not sell your personal information.</p>
 <h2>Rep applicants</h2>
