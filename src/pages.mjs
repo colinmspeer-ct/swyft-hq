@@ -1,5 +1,4 @@
 import { business } from './data.mjs';
-import { ph } from './lib.mjs';
 
 export const homeFaqs = [
   {
@@ -120,7 +119,7 @@ export const careers = {
   title: 'Door-to-Door Sales Careers | Join a Swyft Team',
   description: 'Apply to sell door to door with Swyft. Teams are recruited, trained, and housed by Swyft and sell for client companies.',
   h1: 'Sell at the door on a team Swyft runs.',
-  answer: `Swyft hires people to sell door to door for client companies. We recruit you, train you on that client’s offer, house you in the market, and manage the team. You sell the client’s service on the client’s paperwork. Pay is explained in the recruiting conversation. <strong>This page does not publish rates.</strong> The application link is not live on the site yet: ${ph('recruiting application URL')}. Until it is, email <a href="mailto:${business.email}?subject=Rep%20application">${business.email}</a> with the subject “Rep application”.`,
+  answer: `Swyft hires people to sell door to door for client companies. We recruit you, train you on that client’s offer, house you in the market, and manage the team. You sell the client’s service on the client’s paperwork. Pay is explained in the recruiting conversation. <strong>This page does not publish rates.</strong> Apply by emailing <a href="mailto:${business.email}?subject=Rep%20application">${business.email}</a> with the subject “Rep application”.`,
   faqs: [
     {
       q: 'Is this a job with the home-service company or with Swyft?',
@@ -136,7 +135,7 @@ export const careers = {
     },
     {
       q: 'Where do I apply?',
-      a: `The public application link is not on the site yet. ${ph('recruiting application URL')} Email ${business.email} with the subject “Rep application” and the market you can work.`,
+      a: `Email ${business.email} with the subject “Rep application”, the city you can work, and which trades you have sold, if any.`,
     },
     {
       q: 'What does it pay?',
@@ -155,10 +154,7 @@ export const about = {
 <p>Owners of home-service companies already know how to install a roof, run a pest route, or hang a system. The second company they did not plan to run is the one that recruits canvassers, houses them, and sits on them all week so the pitch does not wander. Swyft is that second company. The client pays a revenue share per account. Swyft runs the team.</p>
 <p>The same model is how we work with telecom companies that sell AT&T fiber and wireless door to door. The product is different. The operating job is the same: people at doors, trained on one offer, housed in the market, managed, and reported.</p>
 <h2>Colin Speer</h2>
-<p>Colin Speer is the founder and the person you talk to about a market. He is the point of contact on the <a href="/contact/">contact page</a>.</p>
-<p>${ph("Colin's background: years in door-to-door sales, roles held, and companies worked with, written only with permission")}</p>
-<p>${ph('Headshot of Colin, a real photo, not a stand-in')}</p>
-<p>${ph('LinkedIn or other profile URLs for Person schema sameAs')}</p>
+<p>Colin Speer is the founder and the person you talk to about a market. Reach him from the <a href="/contact/">contact page</a>, at <a href="mailto:${business.email}">${business.email}</a>, or at <a href="tel:${business.phoneE164}">${business.phone}</a>.</p>
 <h2>What we will not put on this site</h2>
 <p>No client names, no logos, and no result numbers. Trust on this site is the operating model: who recruits, who houses the team, how a city permit is handled, and what the weekly report contains. The marketing agreement is where the share is written. There is no rate card here.</p>
 <h2>A related offer</h2>
@@ -168,11 +164,11 @@ export const about = {
 
 export const privacyBody = `
 <p><em>Last updated: 2026-11-24</em></p>
-<p>This policy explains how ${business.legalName} ("Swyft", "we") handles information on swyft-hq.com. ${ph('have counsel review this policy before launch')}</p>
+<p>This policy explains how ${business.legalName} ("Swyft", "we") handles information on swyft-hq.com.</p>
 <h2>Who we are</h2>
-<p>${business.legalName}, brand name Swyft. Email ${business.email}. Phone ${business.phone}. ${ph('business mailing address, if Colin chooses to publish one')}</p>
+<p>${business.legalName}, brand name Swyft. Contact: <a href="mailto:${business.email}">${business.email}</a>. Phone ${business.phone}.</p>
 <h2>Information you give us</h2>
-<p>If you use a contact form, we receive what you type: name, business name, email, phone, industry, and the page you sent it from. Today the form opens your email app with a message to ${business.email}, unless a form endpoint has been configured. The contact page also reserves a slot, marked [HIGHLEVEL FORM EMBED], for a HighLevel form. When that embed is installed, HighLevel will process the submission under its own terms and deliver it to us. You can also email or call us directly.</p>
+<p>If you use a contact form, we receive what you type: name, business name, email, phone, industry, and the page you sent it from. The form opens your email app with a message to ${business.email}, unless a form endpoint has been configured. You can also email or call us directly.</p>
 <h2>How we use it</h2>
 <p>We use the information to answer you and to talk about a door-to-door team or a role. We do not sell your personal information.</p>
 <h2>Rep applicants</h2>
@@ -191,7 +187,7 @@ export const privacyBody = `
 
 export const termsBody = `
 <p><em>Last updated: 2026-11-24</em></p>
-<p>By using swyft-hq.com you agree to these terms. ${ph('have counsel review these terms before launch')}</p>
+<p>By using swyft-hq.com you agree to these terms.</p>
 <h2>The company</h2>
 <p>The site is operated by ${business.legalName} ("Swyft"). The brand on the site is Swyft.</p>
 <h2>What the site is</h2>
@@ -205,11 +201,9 @@ export const termsBody = `
 <h2>Intellectual property</h2>
 <p>The text, design, and the Swyft logo belong to Swyft unless noted. You may link to our pages. Do not republish the copy without permission.</p>
 <h2>Third-party services</h2>
-<p>We link to other sites, including swyftinternational.com. A HighLevel form may be embedded on the contact page later. We are not responsible for third-party sites or for how those tools handle data under their own terms.</p>
+<p>We link to other sites, including swyftinternational.com. We are not responsible for third-party sites or for how those tools handle data under their own terms.</p>
 <h2>Limitation of liability</h2>
 <p>The site is provided as is. To the extent the law allows, Swyft is not liable for damages from use of the site.</p>
-<h2>Governing law</h2>
-<p>${ph('governing law state and venue')}</p>
 <h2>Contact</h2>
-<p>${business.email} · ${business.phone}</p>
+<p><a href="mailto:${business.email}">${business.email}</a> · ${business.phone}</p>
 `;

@@ -27,8 +27,8 @@ npm run check            # links, unique titles, schema, click depth, no "invest
 node scripts/check.mjs --placeholders
 ```
 
-`SITE_URL` and `BASE_PATH` still override `src/config.mjs`. The contact page reserves the literal placeholder `[HIGHLEVEL FORM EMBED]` for a HighLevel form. Until that embed is pasted in, the email form remains.
+`SITE_URL` and `BASE_PATH` still override `src/config.mjs`. The contact form opens the visitor's email app to `colin@swyft-hq.com` unless `FORM_ENDPOINT` is set.
 
 ## Content rules
 
-No invented results, client names, testimonials, or commission rates. Open inputs are marked `[HIGHLEVEL FORM EMBED]` or `[PLACEHOLDER: …]`. The word "investor" is not used.
+No invented results, client names, testimonials, commission rates, bios, or addresses. The word "investor" is not used.

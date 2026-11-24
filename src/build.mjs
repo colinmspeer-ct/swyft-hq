@@ -3,7 +3,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { SITE_URL, BASE_PATH, BUILD_DATE } from './config.mjs';
 import { business, industries } from './data.mjs';
-import { page, breadcrumbs, answerBlock, faqSection, leadForm, highlevelSlot, cta, eyebrow, card, esc, abs, orgRef, ph } from './lib.mjs';
+import { page, breadcrumbs, answerBlock, faqSection, leadForm, cta, eyebrow, card, esc, abs, orgRef } from './lib.mjs';
 import { homeFaqs, howItWorks, partner, careers, about, privacyBody, termsBody } from './pages.mjs';
 import { internationalParts, internationalLlms } from './international.mjs';
 
@@ -259,7 +259,7 @@ ${prose(`<h2>Housing is part of deploy, not an extra you arrange</h2>
 <h2>Your paperwork is the training manual</h2>
 <p>The price, the scope, and the cancellation language come from you. A rep who cannot say them the way they are written is not finished with training.</p>
 <h2>The report</h2>
-<p>You should be able to see activity and sold accounts by rep, weekly, without calling the manager to ask who worked. The columns are set in the agreement. A sample is not on the site yet. ${ph('sample weekly scorecard, column names only')}</p>`)}
+<p>You should be able to see activity and sold accounts by rep, weekly, without calling the manager to ask who worked. The columns are set in the agreement.</p>`)}
 ${faq.html}
 ${leadForm({ heading: 'Ask how a team would run in your market' })}`;
   emit(
@@ -360,8 +360,7 @@ ${leadForm({
 ${prose(`<h2>The work</h2>
 <p>You knock. You sell one client’s offer, the one you were trained on, at that client’s prices, on that client’s paperwork. You live in housing Swyft arranges for the run. A manager works the market with you. The trades are the ones on this site: exteriors, window cleaning, pest control, lawn care, fiber and wireless, baths and kitchens and doors, home security, water treatment, and HVAC. You do not pick a different product because the door would have been an easier yes.</p>
 <h2>Apply</h2>
-<p>There is no recruiting site linked from this repo yet. ${ph('recruiting application URL')}</p>
-<p>Until that link exists, email <a href="mailto:${business.email}?subject=Rep%20application">${business.email}</a> with the subject “Rep application”, the city you can work, and which of the trades you have sold, if any. Do not send a rate expectation as if this page listed one. It does not.</p>
+<p>Email <a href="mailto:${business.email}?subject=Rep%20application">${business.email}</a> with the subject “Rep application”, the city you can work, and which of the trades you have sold, if any. This page does not list a rate.</p>
 <h2>Owners who landed here</h2>
 <p>If you run a company and you want a team, you want <a href="/partner/">partner with us</a>, not this page. The form below is for that conversation too. Reps should use the email above.</p>`)}
 ${faq.html}
@@ -421,18 +420,17 @@ ${leadForm({ heading: 'Talk to Colin' })}`;
     crumbs: bc.html,
     eyebrowText: 'Contact',
     h1: 'Tell us what you sell at the door.',
-    answer: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The HighLevel form is not embedded yet. The block below is the slot for it. Until that embed is pasted in, use the short form under it.`,
+    answer: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The form below opens your email app with the message filled in. Phone and booking links stay on this page.`,
     primary: cta('#lead-form', 'Book a call'),
-    secondary: cta('/partner/', 'Read the marketing deal', { ghost: true }),
+    secondary: cta(`tel:${business.phoneE164}`, `Call ${business.phone}`, { ghost: true }),
   })}
-${highlevelSlot()}
-${leadForm({ heading: 'Email form, until the embed is live' })}`;
+${leadForm({ heading: 'Book a call', sub: `Name, company, email, and industry. Sending opens an email to <a href="mailto:${business.email}">${business.email}</a>. Or call <a href="tel:${business.phoneE164}">${business.phone}</a>.` })}`;
   emit(
     '/contact/',
     page({
       path: '/contact/',
       title: 'Contact Swyft | Start a Door-to-Door Marketing Deal',
-      description: `Talk with Swyft about a door-to-door team. Email ${business.email} or call ${business.phone}. The HighLevel form embed is still a placeholder.`,
+      description: `Talk with Swyft about a door-to-door team. Email ${business.email} or call ${business.phone}. The form opens your email app.`,
       body,
       schema: [bc.schema, { '@type': 'ContactPage', url: abs('/contact/'), about: orgRef() }],
     }),
@@ -471,7 +469,7 @@ ${leadForm({ heading: 'Email form, until the embed is live' })}`;
 
 // ---------- Privacy / Terms ----------
 for (const [path, name, h1, desc, html, ans] of [
-  ['/privacy/', 'Privacy policy', 'Privacy policy', `How ${business.legalName} handles information submitted through swyft-hq.com.`, privacyBody, `Swyft uses what you send through the contact form or by email only to respond. We do not sell personal information. The contact page reserves a HighLevel embed that is not installed yet. Questions: ${business.email}.`],
+  ['/privacy/', 'Privacy policy', 'Privacy policy', `How ${business.legalName} handles information submitted through swyft-hq.com.`, privacyBody, `Swyft uses what you send through the contact form or by email only to respond. We do not sell personal information. Questions: ${business.email}.`],
   ['/terms/', 'Terms of service', 'Terms of service', `Terms for using the swyft-hq.com website, operated by ${business.legalName}.`, termsBody, 'The site describes Swyft’s door-to-door teams and a marketing deal in general. It is not a quote, not a commission rate, and not the agreement. Questions: colin@swyft-hq.com.'],
 ]) {
   const bc = breadcrumbs([[name, path]]);
@@ -551,7 +549,7 @@ ${industries.map((i) => `- [${i.nav}](${abs(i.url)}): ${indContent[i.key].descri
 - [Partner with us](${abs('/partner/')}): marketing-deal explanation, no published rate
 - [Careers](${abs('/careers/')}): join a Swyft door-to-door team. Application URL is not published yet.
 - [About](${abs('/about/')})
-- [Contact](${abs('/contact/')}): HighLevel form embed is a placeholder until pasted in
+- [Contact](${abs('/contact/')}): short form that emails ${business.email}, or call ${business.phone}
 - [Privacy](${abs('/privacy/')})
 - [Terms](${abs('/terms/')})
 
