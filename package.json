@@ -2,7 +2,7 @@
   "name": "swyft-hq",
   "version": "1.0.0",
   "private": true,
-  "description": "Swyft (swyft-hq.com): static marketing site for pest control and route-based home service businesses.",
+  "description": "Swyft (swyft-hq.com): outsourced door-to-door sales teams for home-service and telecom companies.",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {

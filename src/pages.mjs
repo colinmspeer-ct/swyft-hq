@@ -1,84 +1,209 @@
 import { business } from './data.mjs';
 
-const ph = (t) => `<span class="placeholder">[PLACEHOLDER: ${t}]</span>`;
-
 export const homeFaqs = [
-  { q: 'What is route-based business marketing?', a: 'Route-based business marketing is marketing built around route density: winning more paying stops on the streets your trucks already drive. For pest control, lawn care, pool, cleaning, and HVAC companies, that means door-to-door teams working the blocks around current customers, ads targeted to the zip codes you serve, and local SEO where your crews already run.' },
-  { q: 'Do I have to buy all three divisions?', a: 'No. Pick one, or run all three in sync. Many companies start with one channel, such as a <a href="/services/door-to-door-sales-teams/">door-to-door sales team</a> or <a href="/services/local-seo-google-business-profile/">Google Business Profile management</a>, and add the others once it is working. Every division shares data, so each lead gets worked from every angle.' },
-  { q: 'Will I be locked into a long-term contract?', a: 'No long-term lock-ins. We would rather keep your business by booking jobs than by trapping you in a contract.' },
-  { q: 'How do you report results?', a: 'A clear weekly scorecard built on appointments, jobs, and revenue, not impressions or clicks. You get one point of contact who owns every channel.' },
-  { q: 'Which industries do you work with?', a: 'Pest control is our flagship, along with lawn care, HVAC, cleaning, pool service, solar, plumbing, windows, and home security. See the <a href="/industries/">industries hub</a> for each trade.' },
-  { q: 'How quickly will you get back to me?', a: `Colin and the team reply within one business day. Use the form on this page, email ${business.email}, or call ${business.phone}.` },
+  {
+    q: 'What does Swyft actually do?',
+    a: 'Swyft recruits, trains, houses, and manages door-to-door sales teams that sell a client company’s service. The client keeps the customer and does the install or the route work. Swyft runs the people at the door. The commercial terms are a <a href="/partner/">marketing deal</a>: a revenue share per account, with no rate published on this site.',
+  },
+  {
+    q: 'Do I have to hire the reps?',
+    a: 'No. Hiring, housing, and day-to-day management of the door team sit with Swyft. You still set the price, the paperwork, and the work your crews can fulfill. Read the five steps on <a href="/how-it-works/">how it works</a>.',
+  },
+  {
+    q: 'Which industries do you run teams for?',
+    a: 'Exteriors (roofing, roof repair, siding, windows, gutters, gutter guards), window cleaning, pest control, lawn care, fiber internet for companies that sell AT&T fiber and wireless, interior home improvement (bath remodels, kitchen remodels, doors), home security systems, water treatment and filtration, and HVAC. Each has its own page from the <a href="/industries/">industries index</a>.',
+  },
+  {
+    q: 'Where is the commission rate?',
+    a: 'It is not on this website. The share is set in the marketing agreement for that offer and that market. Two products do not share a rate, and we will not print a number that pretends they do.',
+  },
+  {
+    q: 'Who handles housing and solicitation permits?',
+    a: 'Swyft houses the team in the market. Before the first door, deploy includes a check of that city’s solicitation rules. If a permit is required, it is handled before anyone knocks. This site is not legal advice. Your counsel still reviews the contract the homeowner signs.',
+  },
+  {
+    q: 'Who do I contact?',
+    a: `Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>. The <a href="/contact/#lead-form">contact page</a> has a short form.`,
+  },
 ];
 
+export const howItWorks = {
+  title: 'How Swyft Runs a Door-to-Door Team | Recruit to Report',
+  description: 'Recruit, train, deploy, manage, and report. How Swyft houses a door-to-door sales team that sells your service on your paperwork.',
+  h1: 'Recruit, train, deploy, manage, report.',
+  answer: `Swyft runs a door-to-door sales team in five steps: <strong>recruit</strong> the reps, <strong>train</strong> them on your offer and your paperwork, <strong>deploy</strong> them housed in the market, <strong>manage</strong> them in the field, and <strong>report</strong> activity and sold accounts. You do not hire the team. You pay a revenue share per account under a <a href="/partner/">marketing deal</a>. The rate is in the agreement, not on this page.`,
+  steps: [
+    {
+      title: 'Recruit',
+      body: 'Swyft finds the people who will knock. You do not run ads for reps, sit the interviews, or keep a bench warm between seasons. We recruit for the offer you actually sell, because a person who can talk a quarterly pest plan is not automatically the person who can book a kitchen consultation. If a market cannot be staffed, we say so before a team is promised.',
+    },
+    {
+      title: 'Train',
+      body: 'Training is on your price, your paperwork, and the sentences you do not want said. Reps learn the difference between what the agreement includes and what it does not. They practice the objections that show up in your trade, then they hear it again in the field. A script that contradicts your contract is a script we will not run.',
+    },
+    {
+      title: 'Deploy',
+      body: 'Deploy means the team is in the market, housed by Swyft, and knocking the territory you can fulfill. Housing is part of the model so you are not a landlord and the reps are not commuting in from a city away. Territory follows your capacity and, where it matters, the routes or install calendar you already have. We do not publish a start date. It depends on the market, the offer, and housing.',
+    },
+    {
+      title: 'Manage',
+      body: 'A manager is in the market with the team. The work is coaching, ride-alongs, and pulling someone off a door who is freelancing the offer. You get a point of contact. You do not run the morning meeting. Management is what keeps a housed team from becoming a group of strangers in your shirts, saying things you would not sign.',
+    },
+    {
+      title: 'Report',
+      body: 'You get a weekly picture of what the team did and what sold. Door teams are usually tracked on doors, conversations, and sold accounts. The columns in your report are the ones the agreement names, not a generic dashboard. A sample scorecard is not published here yet.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'Do the reps work for my company?',
+      a: 'They sell your service, on your paperwork, at your prices. Recruiting, housing, and day-to-day management sit with Swyft. The marketing agreement is the document that names the relationship. This page is not that document.',
+    },
+    {
+      q: 'Who houses the team?',
+      a: 'Swyft houses the team in the market for the run. You do not lease the house and you do not manage the roommates. We do not publish addresses or a housing stipend.',
+    },
+    {
+      q: 'Can the team sell more than my crews can install or service?',
+      a: 'It should not. Before anyone knocks, we want the number of accounts you can actually fulfill. A sold job you cannot deliver is a review with your name on it. The team is sized to that capacity. We do not publish a rep-to-crew ratio.',
+    },
+    {
+      q: 'What shows up on the weekly report?',
+      a: 'Activity and sold accounts, in the columns the agreement sets. A sample scorecard is not published. The empty slot is on this page.',
+    },
+    {
+      q: 'How fast can a team be in a market?',
+      a: 'We do not publish a number of days. Recruiting, housing, and your paperwork all have to be ready. Ask on a call and we will talk about that market specifically.',
+    },
+  ],
+};
+
+export const partner = {
+  title: 'Partner with Swyft | Marketing-Deal Door-to-Door Sales',
+  description: 'A marketing deal for home-service and telecom owners. Swyft runs the door-to-door team. You pay a revenue share per account. No rate is published here.',
+  h1: 'You want the accounts. You do not want the sales force.',
+  answer: `A Swyft <strong>marketing deal</strong> means we recruit, train, house, and manage a door-to-door team that sells your service. You keep the customer and do the work. You pay Swyft a <strong>revenue share, a commission per account</strong>, under a written agreement. <strong>No percentage is published on this site.</strong> The rate depends on the product, the ticket, and the market. Start with the industry you sell, or <a href="/contact/">contact Colin</a> at <a href="mailto:${business.email}">${business.email}</a>.`,
+  faqs: [
+    {
+      q: 'What is a marketing deal?',
+      a: 'You do not hire the reps and you do not payroll them. Swyft fields the team. When an account sells and it meets the standard written in the agreement, you pay Swyft a share of that account. The customer relationship stays with you.',
+    },
+    {
+      q: 'Why is there no percentage on this page?',
+      a: 'A roof replacement, a pest route, and an activated fiber line are not the same sale. Publishing one rate would be a fiction. The share is negotiated for the offer in front of us and written into the marketing agreement.',
+    },
+    {
+      q: 'What counts as an account?',
+      a: 'The agreement defines it. For one company it is an installed job. For another it is a started service agreement. For a telecom offer it is the account that qualifies under your program rules. We do not use one definition for every industry.',
+    },
+    {
+      q: 'Who owns the customer?',
+      a: 'You do. Reps sell your service on your paperwork. Swyft is not a lead marketplace, and the account is not resold to another company.',
+    },
+    {
+      q: 'What do you need from us before anyone knocks?',
+      a: 'The offer, the price, the paperwork, a person who can answer product questions, and an honest number for how much work you can fulfill. If the paperwork is not something you would want read aloud on a porch, it is not ready.',
+    },
+    {
+      q: 'Is this a long-term contract with a posted term?',
+      a: 'The term lives in the marketing agreement, not on the website. We do not publish a length here.',
+    },
+    {
+      q: 'We already have a small in-house canvassing crew. Can you still run a team?',
+      a: 'Sometimes. The question is whether two groups would knock the same streets and tell two versions of the offer. If the territories and the script can be separated, we can talk. If they cannot, we should not both be there.',
+    },
+  ],
+};
+
+export const careers = {
+  title: 'Door-to-Door Sales Careers | Join a Swyft Team',
+  description: 'Apply to sell door to door with Swyft. Teams are recruited, trained, and housed by Swyft and sell for client companies.',
+  h1: 'Sell at the door on a team Swyft runs.',
+  answer: `Swyft hires people to sell door to door for client companies. We recruit you, train you on that client’s offer, house you in the market, and manage the team. You sell the client’s service on the client’s paperwork. Pay is explained in the recruiting conversation. <strong>This page does not publish rates.</strong> Apply by emailing <a href="mailto:${business.email}?subject=Rep%20application">${business.email}</a> with the subject “Rep application”.`,
+  faqs: [
+    {
+      q: 'Is this a job with the home-service company or with Swyft?',
+      a: 'You are on a Swyft team. You represent the client’s offer at the door. Housing and day-to-day management are Swyft’s. The recruiting conversation is where the relationship is spelled out. This page is not an offer letter.',
+    },
+    {
+      q: 'Do you house reps?',
+      a: 'Yes. Swyft houses the team in the market for the run. We do not publish cities or housing details on this page.',
+    },
+    {
+      q: 'What will I sell?',
+      a: 'Whatever offer the team is deployed on: exteriors, window cleaning, pest control, lawn care, fiber and wireless, interior remodels, home security, water treatment, or HVAC. You are trained on that offer. You do not invent a different one at the door.',
+    },
+    {
+      q: 'Where do I apply?',
+      a: `Email ${business.email} with the subject “Rep application”, the city you can work, and which trades you have sold, if any.`,
+    },
+    {
+      q: 'What does it pay?',
+      a: 'Pay is discussed in recruiting. We do not publish a rate, a draw, or a split on this website.',
+    },
+  ],
+};
+
 export const about = {
-  h1: 'About Swyft &amp; founder Colin Speer',
-  answer: `Swyft is a marketing company for pest control and route-based home service businesses, led by <strong>Colin Speer</strong>. Colin built Swyft so operators could get door-to-door sales, cold calling, local SEO, and paid ads from one accountable team instead of juggling agencies. Reach Colin at <a href="mailto:${business.email}">${business.email}</a> or <a href="tel:${business.phoneE164}">${business.phone}</a>.`,
+  title: 'About Swyft Solutions LLC and Colin Speer',
+  description: 'Swyft Solutions LLC, led by Colin Speer, recruits, trains, houses, and manages outsourced door-to-door sales teams.',
+  h1: 'Swyft Solutions LLC, led by Colin Speer.',
+  answer: `<strong>Swyft</strong> is the brand of <strong>Swyft Solutions LLC</strong>. Colin Speer leads the company. Swyft recruits, trains, houses, and manages door-to-door sales teams that sell for home-service and telecom companies on a <a href="/partner/">marketing deal</a>. Email <a href="mailto:${business.email}">${business.email}</a> or call <a href="tel:${business.phoneE164}">${business.phone}</a>.`,
   body: `
-<h2>Why Swyft exists</h2>
-<p>Route-based companies win on density, speed to lead, and follow-up. Most of them buy marketing in disconnected pieces: a summer door-to-door crew, an SEO retainer, an ads freelancer, a call center. Nobody owns the whole picture, so leads fall between vendors and reporting turns into a pile of impressions and clicks. Swyft puts every channel under one roof with one weekly scorecard: appointments, jobs, and revenue.</p>
-<h2>Led by Colin Speer</h2>
-<p>Colin Speer leads Swyft and is your point of contact. The Swyft playbooks come from the field: we've run doors, managed ad spend, and dialed the phones.</p>
-<p>${ph('Colin\'s background: years in door-to-door sales / pest control, roles held, companies worked with (with permission)')}</p>
-<p>${ph('Education (school, degree) and any licenses or certifications, e.g. Google Ads certification')}</p>
-<p>${ph('Professional memberships, e.g. industry associations')}</p>
-<p>${ph('Headshot and on-the-job photos of Colin with field teams (real photos, not stock)')}</p>
-<p>${ph('LinkedIn and other profile links for Person schema sameAs')}</p>
-<h2>How we work</h2>
-<h3>Operators, not theorists</h3>
-<p>Every recommendation has to survive a real route, a real rep, and a real phone call. If a tactic doesn't book jobs, we cut it.</p>
-<h3>Channels that talk to each other</h3>
-<p>Ad audiences inform door routes. Door data shapes outbound lists. Leads that don't close at the door get worked by phone and email. Nothing works in a silo.</p>
-<h3>Reporting you'll actually read</h3>
-<p>A clear weekly scorecard: appointments set, jobs booked, revenue. No vanity metrics.</p>
-<h2>The three divisions</h2>
-<ul>
-<li><strong>Swyft Marketing</strong>: <a href="/services/door-to-door-sales-teams/">door-to-door sales teams</a> that knock your best territories and book real appointments.</li>
-<li><strong>Swyft Outbound</strong>: <a href="/services/cold-calling-appointment-setting/">cold calling and appointment setting</a>, cold email, and database reactivation.</li>
-<li><strong>Swyft Digital</strong>: <a href="/services/digital-marketing/">Meta and Google ads</a>, <a href="/services/pest-control-seo/">pest control SEO</a>, and <a href="/services/local-seo-google-business-profile/">local SEO and Google Business Profile management</a>.</li>
-</ul>
-<h2>Client results</h2>
-<p>${ph('add client results with permission: company type, channel, before/after, timeframe')}</p>
-<p>${ph('add client testimonials with name, company, photo, and date (real, with permission)')}</p>
+<h2>What the company is</h2>
+<p>Owners of home-service companies already know how to install a roof, run a pest route, or hang a system. The second company they did not plan to run is the one that recruits canvassers, houses them, and sits on them all week so the pitch does not wander. Swyft is that second company. The client pays a revenue share per account. Swyft runs the team.</p>
+<p>The same model is how we work with telecom companies that sell AT&T fiber and wireless door to door. The product is different. The operating job is the same: people at doors, trained on one offer, housed in the market, managed, and reported.</p>
+<h2>Colin Speer</h2>
+<p>Colin Speer is the founder and the person you talk to about a market. Reach him from the <a href="/contact/">contact page</a>, at <a href="mailto:${business.email}">${business.email}</a>, or at <a href="tel:${business.phoneE164}">${business.phone}</a>.</p>
+<h2>What we will not put on this site</h2>
+<p>No client names, no logos, and no result numbers. Trust on this site is the operating model: who recruits, who houses the team, how a city permit is handled, and what the weekly report contains. The marketing agreement is where the share is written. There is no rate card here.</p>
+<h2>A related offer</h2>
+<p><a href="/international/">Swyft International</a> is a separate page for offshore talent placement. It is not the door-to-door team. Door-to-door selling stays on <a href="/how-it-works/">how it works</a>.</p>
 `,
 };
 
 export const privacyBody = `
-<p><em>Last updated: ${'2026-11-19'}</em></p>
-<p>This policy explains how Swyft ("we", "us") handles information on swyft-hq.com. ${ph('have counsel review this policy before launch')}</p>
+<p><em>Last updated: 2026-11-24</em></p>
+<p>This policy explains how ${business.legalName} ("Swyft", "we") handles information on swyft-hq.com.</p>
+<h2>Who we are</h2>
+<p>${business.legalName}, brand name Swyft. Contact: <a href="mailto:${business.email}">${business.email}</a>. Phone ${business.phone}.</p>
 <h2>Information you give us</h2>
-<p>When you use a contact form, we receive what you enter: your name, business name, email, phone number, service interest, message, and the page you submitted from. Depending on configuration, the form either opens your own email app with a pre-filled message to ${business.email}, or sends the form to a form-processing provider that forwards it to us. You can also contact us directly by email or phone.</p>
+<p>If you use a contact form, we receive what you type: name, business name, email, phone, industry, and the page you sent it from. The form opens your email app with a message to ${business.email}, unless a form endpoint has been configured. You can also email or call us directly.</p>
 <h2>How we use it</h2>
-<p>We use your information to respond to your inquiry, schedule calls, and provide services you request. We do not sell your personal information.</p>
+<p>We use the information to answer you and to talk about a door-to-door team or a role. We do not sell your personal information.</p>
+<h2>Rep applicants</h2>
+<p>If you email a rep application, we use what you send to respond about recruiting. Pay and housing details are not collected by this website. They are discussed off the site.</p>
 <h2>Cookies and analytics</h2>
-<p>This site does not set advertising or analytics cookies at this time. If we add analytics or advertising tags, we will update this policy.</p>
+<p>This site does not set advertising or analytics cookies. If that changes, this policy changes first.</p>
 <h2>Hosting</h2>
-<p>The site is hosted on GitHub Pages. GitHub may log technical data such as IP addresses for security and operations under its own privacy statement.</p>
+<p>The site is hosted on GitHub Pages. GitHub may log technical data such as IP addresses under its own privacy statement.</p>
 <h2>Calls, texts, and email</h2>
-<p>If you give us your phone number or email, we may contact you about your inquiry. You can ask us to stop at any time by replying, emailing ${business.email}, or calling ${business.phone}.</p>
+<p>If you give us a phone number or email, we may contact you about your inquiry. You can tell us to stop by emailing ${business.email} or calling ${business.phone}.</p>
 <h2>Your choices</h2>
-<p>You may ask us to access, correct, or delete information you have sent us by emailing ${business.email}.</p>
+<p>Email ${business.email} to ask for access, a correction, or deletion of what you sent us.</p>
 <h2>Children</h2>
-<p>This site is for businesses and is not directed to children under 13.</p>
-<h2>Contact</h2>
-<p>Swyft · ${business.email} · ${business.phone} · ${ph('business mailing address, if Colin chooses to publish one')}</p>
+<p>This site is for businesses and adults applying to work. It is not directed to children under 13.</p>
 `;
 
 export const termsBody = `
-<p><em>Last updated: ${'2026-11-19'}</em></p>
-<p>By using swyft-hq.com you agree to these terms. ${ph('have counsel review these terms before launch')}</p>
-<h2>Use of the site</h2>
-<p>The content on this site is for general information about Swyft's services. It is not legal, tax, or regulatory advice. Rules for door-to-door solicitation, telemarketing, email, and advertising vary by location; check with your own counsel.</p>
+<p><em>Last updated: 2026-11-24</em></p>
+<p>By using swyft-hq.com you agree to these terms.</p>
+<h2>The company</h2>
+<p>The site is operated by ${business.legalName} ("Swyft"). The brand on the site is Swyft.</p>
+<h2>What the site is</h2>
+<p>The pages describe how Swyft recruits, trains, houses, and manages door-to-door sales teams, and how a marketing deal works in general. They are not a quote, not a promise of accounts, and not the marketing agreement. Any engagement is governed by a separate written agreement. No commission rate on this site is an offer.</p>
 <h2>No guarantee of results</h2>
-<p>Marketing results depend on many factors outside our control. Nothing on this site is a promise of specific rankings, leads, appointments, or revenue. Any engagement is governed by a separate written agreement.</p>
+<p>Sold accounts depend on the offer, the market, the paperwork, and the work you can fulfill. Nothing here promises a number of doors, appointments, or accounts.</p>
+<h2>Door-to-door rules</h2>
+<p>Solicitation, permitting, and cancellation rules vary by city and state. The site is not legal advice. Have your own counsel review your paperwork and your process.</p>
+<h2>Swyft International</h2>
+<p>The <a href="/international/">Swyft International</a> page describes a separate offshore placement offer, including figures stated on that page. Those figures are not the door-to-door marketing deal.</p>
 <h2>Intellectual property</h2>
-<p>The site's text, design, and graphics belong to Swyft unless otherwise noted. You may share links to our pages; please don't republish our content without permission.</p>
-<h2>Third-party links</h2>
-<p>We link to third-party sites such as Google and government resources. We are not responsible for their content or policies.</p>
+<p>The text, design, and the Swyft logo belong to Swyft unless noted. You may link to our pages. Do not republish the copy without permission.</p>
+<h2>Third-party services</h2>
+<p>We link to other sites, including swyftinternational.com. We are not responsible for third-party sites or for how those tools handle data under their own terms.</p>
 <h2>Limitation of liability</h2>
-<p>The site is provided "as is." To the extent permitted by law, Swyft is not liable for damages arising from use of the site.</p>
-<h2>Governing law</h2>
-<p>${ph('governing law state and venue')}</p>
+<p>The site is provided as is. To the extent the law allows, Swyft is not liable for damages from use of the site.</p>
 <h2>Contact</h2>
-<p>${business.email} · ${business.phone}</p>
+<p><a href="mailto:${business.email}">${business.email}</a> · ${business.phone}</p>
 `;

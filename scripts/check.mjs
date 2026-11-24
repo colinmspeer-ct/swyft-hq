@@ -62,9 +62,11 @@ for (const f of files) {
     else if (rel.endsWith('/')) links.add(rel);
   }
   graph.set(path, [...links]);
-  for (const m of html.matchAll(/\[PLACEHOLDER: ([^\]]+)\]/g)) {
-    if (!placeholders.has(m[1])) placeholders.set(m[1], new Set());
-    placeholders.get(m[1]).add(path);
+  if (/\binvestors?\b/i.test(html)) errors.push(`${path}: uses the word investor`);
+  for (const m of html.matchAll(/\[(?:PLACEHOLDER:\s*([^\]]+)|(CLIENT LOGO|STAT|HIGHLEVEL FORM EMBED))\]/g)) {
+    const label = (m[1] || m[2]).trim();
+    if (!placeholders.has(label)) placeholders.set(label, new Set());
+    placeholders.get(label).add(path);
   }
   const main = get(/<main id="main">([\s\S]*?)<section class="section wrap" id="lead-form"/) ?? '';
   words.push([path, main.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length]);

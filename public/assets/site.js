@@ -16,7 +16,7 @@
           .then(function (r) {
             if (!r.ok) throw new Error(r.status);
             form.reset();
-            status.textContent = "Thanks, we'll be in touch within one business day.";
+            status.textContent = "Thanks. We have it, and we will reply by email.";
           })
           .catch(function () { mailto(); });
         return;
@@ -26,7 +26,7 @@
       function mailto() {
         var lines = [];
         data.forEach(function (v, k) { lines.push(k.charAt(0).toUpperCase() + k.slice(1) + ': ' + v); });
-        var subject = 'Swyft strategy call request' + (data.get('business') ? ' from ' + data.get('business') : '');
+        var subject = 'Swyft door-to-door team' + (data.get('business') ? ' from ' + data.get('business') : '');
         location.href = 'mailto:' + form.getAttribute('data-email') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
         status.textContent = 'Opening your email app… If nothing happens, email ' + form.getAttribute('data-email') + ' or call 267-606-8667.';
       }

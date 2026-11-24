@@ -1,69 +1,66 @@
-// Single source of truth for business facts. Keep identical everywhere (site, schema, llms.txt).
+// Single source of truth for business facts. Keep identical in schema and llms.txt.
+//
+// Industries are config-driven. To add one later:
+//   1. Append an entry to `industries` below.
+//   2. Add content/industries/{key}.mjs exporting the page (the build throws if it is missing).
+// Do not add an industry that has not been approved for the site.
 
 export const business = {
   name: 'Swyft',
-  legalNameNote: 'Colin\'s Lovable draft used "Swyft Solutions"',
+  legalName: 'Swyft Solutions LLC',
   alternateName: 'Swyft Solutions',
   domain: 'swyft-hq.com',
   email: 'colin@swyft-hq.com',
   phone: '267-606-8667',
   phoneE164: '+12676068667',
   founder: 'Colin Speer',
-  tagline: 'Every channel. One growth engine.',
+  tagline: 'The outsourced door-to-door sales company.',
   oneLiner:
-    'Swyft is the marketing company for pest control and route-based home service businesses: door-to-door sales teams, cold calling and appointment setting, and digital marketing with local SEO, under one roof.',
+    'Swyft Solutions LLC recruits, trains, houses, and manages door-to-door sales teams that sell for home-service and telecom companies. The client pays a revenue share per account. Swyft runs the team.',
   areaServed: 'United States',
 };
 
-export const divisions = [
-  { key: 'marketing', name: 'Swyft Marketing', tag: 'Door-to-door', body: 'Trained field reps knocking in your service area, booking real appointments for your crews.', service: 'door-to-door-sales-teams' },
-  { key: 'digital', name: 'Swyft Digital', tag: 'Ads + Local SEO', body: 'Meta ads, Google ads, and local SEO engineered to make your phone ring, not vanity metrics.', service: 'digital-marketing' },
-  { key: 'outbound', name: 'Swyft Outbound', tag: 'Calls + Email', body: 'Cold calling and cold email that open commercial accounts and revive dead leads.', service: 'cold-calling-appointment-setting' },
-];
-
-// Money pages: services
-export const services = [
-  { key: 'door-to-door-sales-teams', url: '/services/door-to-door-sales-teams/', name: 'Door-to-Door Sales Teams', short: 'D2D sales teams', division: 'Swyft Marketing', blurb: 'Recruited, trained, managed field reps who knock your best territories and book real appointments.' },
-  { key: 'cold-calling-appointment-setting', url: '/services/cold-calling-appointment-setting/', name: 'Cold Calling & Appointment Setting', short: 'Cold calling', division: 'Swyft Outbound', blurb: 'Live callers and cold email that land commercial accounts, revive old estimates, and fill your calendar.' },
-  { key: 'pest-control-seo', url: '/services/pest-control-seo/', name: 'Pest Control SEO', short: 'Pest control SEO', division: 'Swyft Digital', blurb: 'Pest-by-pest and city-by-city pages, technical SEO, and content that ranks your pest company organically.' },
-  { key: 'local-seo-google-business-profile', url: '/services/local-seo-google-business-profile/', name: 'Local SEO & Google Business Profile Management', short: 'Local SEO & GBP', division: 'Swyft Digital', blurb: 'Google Business Profile optimization, reviews, and local SEO to win the map pack where you run routes.' },
-  { key: 'digital-marketing', url: '/services/digital-marketing/', name: 'Digital Marketing: Meta & Google Ads', short: 'Meta & Google ads', division: 'Swyft Digital', blurb: 'Meta ads, Google Search and Local Services Ads, landing pages, and call tracking measured in booked jobs.' },
-];
-
-// Money pages: industries. Draft trades: Roofing, Solar, Pest Control, HVAC, Plumbing, Windows,
-// Lawn Care, Pool Service, Home Security, Painting, Gutters, Fencing (+ Cleaning in Digital/Outbound).
 export const industries = [
-  { key: 'pest-control', url: '/industries/pest-control-marketing/', name: 'Pest Control', label: 'Pest control marketing' },
-  { key: 'lawn-care', url: '/industries/lawn-care-marketing/', name: 'Lawn Care', label: 'Lawn care marketing' },
-  { key: 'hvac', url: '/industries/hvac-marketing/', name: 'HVAC', label: 'HVAC marketing' },
-  { key: 'cleaning', url: '/industries/cleaning-business-marketing/', name: 'Cleaning', label: 'Cleaning business marketing' },
-  { key: 'pool', url: '/industries/pool-service-marketing/', name: 'Pool Service', label: 'Pool service marketing' },
-  { key: 'solar', url: '/industries/solar-marketing/', name: 'Solar', label: 'Solar marketing' },
-  { key: 'plumbing', url: '/industries/plumbing-marketing/', name: 'Plumbing', label: 'Plumbing marketing' },
-  { key: 'windows', url: '/industries/window-company-marketing/', name: 'Windows', label: 'Window company marketing' },
-  { key: 'home-security', url: '/industries/home-security-marketing/', name: 'Home Security', label: 'Home security marketing' },
+  { key: 'exteriors', url: '/industries/exteriors/', name: 'Exteriors', nav: 'Exteriors', lead: true },
+  { key: 'window-cleaning', url: '/industries/window-cleaning/', name: 'Window cleaning', nav: 'Window cleaning' },
+  { key: 'pest-control', url: '/industries/pest-control/', name: 'Pest control', nav: 'Pest control' },
+  { key: 'lawn-care', url: '/industries/lawn-care/', name: 'Lawn care', nav: 'Lawn care' },
+  { key: 'fiber-internet', url: '/industries/fiber-internet/', name: 'Fiber internet', nav: 'Fiber internet' },
+  { key: 'interior-home-improvement', url: '/industries/interior-home-improvement/', name: 'Interior home improvement', nav: 'Interior home improvement' },
+  { key: 'home-security', url: '/industries/home-security/', name: 'Home security', nav: 'Home security' },
+  { key: 'water-treatment', url: '/industries/water-treatment/', name: 'Water treatment', nav: 'Water treatment' },
+  { key: 'hvac', url: '/industries/hvac/', name: 'HVAC', nav: 'HVAC' },
 ];
 
-export const trades = ['Pest Control', 'Lawn Care', 'HVAC', 'Cleaning', 'Pool Service', 'Solar', 'Plumbing', 'Windows', 'Home Security', 'Roofing', 'Painting', 'Gutters', 'Fencing'];
+export const nav = [
+  ['/industries/', 'Industries'],
+  ['/how-it-works/', 'How it works'],
+  ['/partner/', 'Partner'],
+  ['/careers/', 'Careers'],
+  ['/about/', 'About'],
+];
 
 export const serviceInterestOptions = [
-  'Door-to-door sales teams (Swyft Marketing)',
-  'Cold calling & appointment setting (Swyft Outbound)',
-  'Pest control SEO',
-  'Local SEO & Google Business Profile',
-  'Meta & Google ads (Swyft Digital)',
-  'All channels / not sure yet',
+  'Exteriors and roofing',
+  'Window cleaning',
+  'Pest control',
+  'Lawn care',
+  'Fiber internet (AT&T fiber and wireless)',
+  'Interior home improvement',
+  'Home security systems',
+  'Water treatment and filtration',
+  'HVAC',
+  'Not sure which industry yet',
 ];
 
-// knowsAbout entities with Wikipedia / Wikidata references.
 export const knowsAbout = [
   { name: 'Door-to-door sales', wiki: 'https://en.wikipedia.org/wiki/Door-to-door', wikidata: 'https://www.wikidata.org/wiki/Q688702' },
-  { name: 'Cold calling', wiki: 'https://en.wikipedia.org/wiki/Cold_calling', wikidata: 'https://www.wikidata.org/wiki/Q935918' },
-  { name: 'Search engine optimization', wiki: 'https://en.wikipedia.org/wiki/Search_engine_optimization', wikidata: 'https://www.wikidata.org/wiki/Q180711' },
-  { name: 'Local search engine optimisation', wiki: 'https://en.wikipedia.org/wiki/Local_search_engine_optimisation', wikidata: 'https://www.wikidata.org/wiki/Q30324357' },
-  { name: 'Google Business Profile (Google Maps business listings)', wiki: 'https://en.wikipedia.org/wiki/Google_Maps#Business_listings', wikidata: 'https://www.wikidata.org/wiki/Q12013' },
+  { name: 'Roof', wiki: 'https://en.wikipedia.org/wiki/Roof', wikidata: 'https://www.wikidata.org/wiki/Q83180' },
   { name: 'Pest control', wiki: 'https://en.wikipedia.org/wiki/Pest_control', wikidata: 'https://www.wikidata.org/wiki/Q2306047' },
   { name: 'Lawn care', wiki: 'https://en.wikipedia.org/wiki/Lawn', wikidata: 'https://www.wikidata.org/wiki/Q207766' },
+  { name: 'Window cleaner', wiki: 'https://en.wikipedia.org/wiki/Window_cleaner', wikidata: 'https://www.wikidata.org/wiki/Q8024196' },
   { name: 'Heating, ventilation, and air conditioning', wiki: 'https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning', wikidata: 'https://www.wikidata.org/wiki/Q1798773' },
-  { name: 'Online advertising', wiki: 'https://en.wikipedia.org/wiki/Online_advertising', wikidata: 'https://www.wikidata.org/wiki/Q624902' },
+  { name: 'Water purification', wiki: 'https://en.wikipedia.org/wiki/Water_purification', wikidata: 'https://www.wikidata.org/wiki/Q550861' },
+  { name: 'Security alarm', wiki: 'https://en.wikipedia.org/wiki/Security_alarm', wikidata: 'https://www.wikidata.org/wiki/Q7301230' },
+  { name: 'Fiber to the x', wiki: 'https://en.wikipedia.org/wiki/Fiber_to_the_x', wikidata: 'https://www.wikidata.org/wiki/Q1412843' },
 ];
